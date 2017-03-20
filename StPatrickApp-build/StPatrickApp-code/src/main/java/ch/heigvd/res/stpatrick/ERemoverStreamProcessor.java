@@ -18,17 +18,18 @@ import java.io.Writer;
  *
  * @author Olivier Liechti
  */
-class BasicStreamProcessor implements IStreamProcessor {
+class ERemoverStreamProcessor implements IStreamProcessor {
 
     @Override
     public void process(Reader in, Writer out) throws IOException {
         BufferedReader br = new BufferedReader(in);
         BufferedWriter bw = new BufferedWriter(out);
         int c = br.read();
-        bw.write(c);
+        if (c != -1 && (char) c != 'E' && (char) c != 'e')
+            bw.write(c);
         while (c != -1) {
             c = br.read();
-            if (c != -1)
+            if (c != -1 && (char) c != 'E' && (char) c != 'e')
                 bw.write(c);
         }
         bw.flush();
