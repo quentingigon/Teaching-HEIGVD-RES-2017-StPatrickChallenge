@@ -14,12 +14,12 @@ public class ARemoverStreamDecoratorController implements IStreamDecoratorContro
 
     @Override
     public Reader decorateReader(Reader inputReader) {
-        return new BufferedReader(inputReader);
+        return inputReader;
     }
 
     @Override
     public Writer decorateWriter(Writer outputWriter) {
-        return new BufferedWriter(outputWriter);
+        return new ARemoverWriter(outputWriter);
     }
 
 }
